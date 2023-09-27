@@ -87,7 +87,7 @@ void checkSensor() {
   if (rightSensor == 1 || leftSensor == 1 || backSensor == 1) {
     if (rightSensor) {
       runBackward();
-      // delay(400);
+      delay(600);
       runLeft();
       delay(100);
     } else if (leftSensor) {
