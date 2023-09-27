@@ -11,11 +11,7 @@
 #define IN_3 9
 #define IN_4 10
 
-//Robot's Status
-#define DELAY 1000
-
 void setup() {
-  // put your setup code here, to run once:
   Serial.begin(9600);
   pinMode(EN_A, OUTPUT);
   pinMode(IN_1, OUTPUT);
@@ -30,12 +26,11 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
   checkSensor();
 }
 void runForward() {
-  analogWrite(EN_A, 90);
-  analogWrite(EN_B, 90);
+  analogWrite(EN_A, 95);
+  analogWrite(EN_B, 95);
   digitalWrite(IN_1, 1);
   digitalWrite(IN_2, 0);
   digitalWrite(IN_3, 1);
@@ -43,8 +38,8 @@ void runForward() {
 }
 
 void runBackward() {
-  analogWrite(EN_A, 255);
-  analogWrite(EN_B, 255);
+  analogWrite(EN_A, 200);
+  analogWrite(EN_B, 200);
   digitalWrite(IN_1, 0);
   digitalWrite(IN_2, 1);
   digitalWrite(IN_3, 0);
@@ -52,8 +47,8 @@ void runBackward() {
 }
 
 void runRight() {
-  analogWrite(EN_A, 150);
-  analogWrite(EN_B, 75);
+  analogWrite(EN_A, 200);
+  analogWrite(EN_B, 100);
   digitalWrite(IN_1, 1);
   digitalWrite(IN_2, 0);
   digitalWrite(IN_3, 0);
@@ -61,8 +56,8 @@ void runRight() {
 }
 
 void runLeft() {
-  analogWrite(EN_A, 75);
-  analogWrite(EN_B, 150);
+  analogWrite(EN_A, 100);
+  analogWrite(EN_B, 200);
   digitalWrite(IN_1, 0);
   digitalWrite(IN_2, 1);
   digitalWrite(IN_3, 1);
@@ -92,22 +87,19 @@ void checkSensor() {
   if (rightSensor == 1 || leftSensor == 1 || backSensor == 1) {
     if (rightSensor) {
       runBackward();
-      delay(400);
-      // delay(DELAY);
-       runLeft();
+      // delay(400);
+      runLeft();
       delay(100);
     } else if (leftSensor) {
       runBackward();
-      delay(400);
-      // delay(DELAY);
-       runRight();
+      delay(600);
+      runRight();
       delay(100);
     } else if (rightSensor && leftSensor) {
       runBackward();
-      // delay(DELAY);
     } else if (backSensor) {
       runForward();
     }
-  } else 
-      runForward();
-  }
+  } else
+    runForward();
+}
